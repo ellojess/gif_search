@@ -1,5 +1,8 @@
 
 <!-- TODO: Extend 'base.html' and put content into a block 'body' to match -->
+{% extends 'base.html' %}
+{% block body %}
+<!-- {{trending_gifs}} -->
 
 <!-- TODO: Make an HTML form containing a search box and a submit button to add
     the search term to the query string -->
@@ -7,3 +10,10 @@
 <!-- TODO: Make a for loop to loop over GIFs passed in from the server -->
 
 <!-- TODO: For each gif, include the 'gif.html' template to display it -->
+{% for gif in trending_gifs %}
+    {% include  'gif.html' %}
+{% endfor %}
+
+
+{% endblock %}
+
