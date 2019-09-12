@@ -7,32 +7,25 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     """Return homepage."""
-
     # parameters
     apikey = "CIKSZWLE8R9M" # test value
     lmt = 10
-
     # TODO: Extract query term from url
     query = request.args.get('query')
-
     #out test search
     search_term = "excited"
 
-
-
 # TODO: Make 'params' dict with query term and API key
-params = {
-    "q": query_term,
-    "Key": "CIKSZWLE8R9M"
-    "lmt": 10
-}
+    params = {
+        "query": query,
+        "apikey": api_consumer_key,
+        "link":'https://api.tenor.com/v1/'
+        }
+
+# TODO: Make an API call to Tenor using the 'requests' library
 response = requests.get(
     'https://api.tenor.com/v1/search',
     params=params)
-
-    # TODO: Make an API call to Tenor using the 'requests' library
-    r = requests.get(
-        f"{params.get('link')}search?q=%s&key=%s&limit=%s" % (params.get('query'), params.get('apikey'), lmt))
 
     # TODO: Get the first 10 results from the search results
     # https://tenor.com/gifapi/documentation#endpoints-search
@@ -42,10 +35,10 @@ response = requests.get(
     if r.status_code == 200:
         # load the GIFs using the urls for the smaller GIF sizes
         top_8gifs = json.loads(r.content)
-        print top_8gifs
-        # move on 
+        print top_10gifs
+        # move on
     else:
-        top_8gifs = None
+        top_10gifs = None
         # handle error
     # continue a similar pattern until the user makes a selection or starts a new search.
 
