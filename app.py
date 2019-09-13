@@ -6,10 +6,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    apikey = "NZ710J55MC8F"
+    apikey = "CIKSZWLE8R9M"
     lmt = 10
     # get the top 10 trending GIFs - using the default locale of en_US
-    r = requests.get("https://api.tenor.com/v1/trending?key=%s&limit=%s" % (apikey, lmt))
+    r = requests.get("https://api.tenor.com/v1/trending?key=%s&limit=%s" % (apikey, lmt))#add query
 
     if r.status_code == 200:
         trending_gifs = json.loads(r.content)["results"]
@@ -19,10 +19,7 @@ def index():
     # get the current list of categories - using the default locale of en_US
     r = requests.get("https://api.tenor.com/v1/categories?key=%s" % (apikey,))
 
-    if r.status_code == 200:
-        trending_terms = json.loads(r.content)
-    else:
-        trending_terms = None
+
 
     return render_template('index.html', trending_gifs = trending_gifs)
 
