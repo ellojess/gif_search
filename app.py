@@ -8,24 +8,22 @@ app = Flask(__name__)
 def index():
     apikey = "CIKSZWLE8R9M"
     lmt = 10
+    query = request.args.get('query')
     # get the top 10 trending GIFs - using the default locale of en_US
-    r = requests.get("https://api.tenor.com/v1/trending?key=%s&limit=%s" % (apikey, lmt))#add query
-
+    params = {
+        "q": query,
+        "key": apikey, 
+        "lmt": lmt
+        }
+    r = requests.get("https://api.tenor.com/v1/search", params)
+    
     if r.status_code == 200:
-        trending_gifs = json.loads(r.content)["results"]
+        gifs = json.loads(r.content)["results"]
     else:
-        trending_gifs = None
+        gifs = None
 
-    # get the current list of categories - using the default locale of en_US
-    r = requests.get("https://api.tenor.com/v1/categories?key=%s" % (apikey,))
+    return render_template('index.html', gifs = gifs)
 
-
-
-    return render_template('index.html', trending_gifs = trending_gifs)
-
-#returns gif links in terminal V
-##print(trending_gifs)
-##print(trending_terms)
 
 
 

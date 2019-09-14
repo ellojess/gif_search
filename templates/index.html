@@ -7,8 +7,10 @@
 
 {% endblock %}
 <p>Search for a GIFs!</p>
-<input type="text" placeholder="Search..">
-
+<form action = '/'>
+<input name="query" type="query" placeholder="Search.."/>
+<button type="submit">Submit</button>
+</form>
 
 <!-- TODO: Make an HTML form containing a search box and a submit button to add
     the search term to the query string -->
@@ -16,7 +18,7 @@
 <!-- TODO: Make a for loop to loop over GIFs passed in from the server -->
 
 <!-- TODO: For each gif, include the 'gif.html' template to display it -->
-{% for gif in trending_gifs %}
+{% for gif in gifs %}
     {% include  'gif.html' %}
 {% endfor %}
 
