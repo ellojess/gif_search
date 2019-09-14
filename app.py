@@ -9,12 +9,13 @@ def index():
     apikey = "CIKSZWLE8R9M"
     lmt = 10
     query = request.args.get('query')
-    # get the top 10 trending GIFs - using the default locale of en_US
+    #parameters in a dictionary so we can call it in requests
     params = {
         "q": query,
         "key": apikey, 
         "lmt": lmt
         }
+    #This requests the tenor api and inputs the parameters so we can get out what we searched for.
     r = requests.get("https://api.tenor.com/v1/search", params)
     
     if r.status_code == 200:
@@ -24,10 +25,9 @@ def index():
 
     return render_template('index.html', gifs = gifs)
 
+if __name__ == '__main__':
+    app.run(debug=True)
 
-
-
-   
     # parameters
     ##apikey = "CIKSZWLE8R9M" # test value
     ##lmt = 10
@@ -65,6 +65,3 @@ def index():
 
     # TODO: Render the 'index.html' template, passing the gifs as a named parameter
     ##return render_template("index.html")
-
-if __name__ == '__main__':
-    app.run(debug=True)
