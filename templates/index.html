@@ -5,7 +5,7 @@
 <link rel="stylesheet" href=../static/style/styles.css>
 
 {% block title %}
-<h1>GIF Search!</h1>
+<h1>GIF Search</h1>
 {% endblock %}
 
 <p>Search for a GIFs!</p>
@@ -13,7 +13,7 @@
 <!-- This is the search bar, and the submit button-->
 <div class = "search-box">
 <form action = '/'>
-<input class="search-txt" type="query" placeholder="Type to Search.."/>
+<input class="search-txt" name="query" type="query" placeholder="Type to Search for GIFs"/>
 <!-- <button type="submit">Submit</button> -->
 <a class= "search-btn" href="#">
     <i class="fas fa-search"></i>
