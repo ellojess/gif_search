@@ -13,7 +13,7 @@ def index():
     params = {
         "q": query,
         "key": apikey, 
-        "lmt": lmt
+        "limit": lmt
         }
     #This requests the tenor api and inputs the parameters so we can get out what we searched for.
     r = requests.get("https://api.tenor.com/v1/search", params)

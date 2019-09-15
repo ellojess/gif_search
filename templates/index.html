@@ -14,9 +14,10 @@
 <div class = "search-box">
 <form action = '/'>
 <input class="search-txt" name="query" type="query" placeholder="Type to Search for GIFs"/>
-<!-- <button type="submit">Submit</button> -->
 <a class= "search-btn" href="#">
+    <button input class="search-btn" type="submit">
     <i class="fas fa-search"></i>
+    </button>
     <!--search button icon from https://fontawesome.com/ -->
 </a>
 
@@ -31,8 +32,10 @@
 <!-- TODO: For each gif, include the 'gif.html' template to display it -->
 
 <!--This loops through gifs and it runs the .gif html code to display the gif    -->
-{% for gif in gifs %}
-    {% include  'gif.html' %}
-{% endfor %}
-
+<div class="grid"> 
+    {% for gif in gifs %}
+        {% include  'gif.html' %}
+    {% endfor %}
+</div>
 {% endblock %}
+
