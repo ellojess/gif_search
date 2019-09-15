@@ -1,9 +1,13 @@
 body {
   background-color: black;
+  margin: 0;
 }
 h1 {
   color: purple;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
 }
 p {
   color: red;
+  font-family: "Courier New", Courier, monospace;
 }
