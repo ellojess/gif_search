@@ -6,7 +6,7 @@ body {
 
 h1 {
   color: #2f3640;
-  font-family: Myriad Pro;
+  font-family: "Courier New", Courier, monospace;
   text-align: center;
 }
 p {
@@ -28,7 +28,7 @@ p {
 .search-btn{
   color: #e84118;
   float: right;
-  width: 40px;
+  width: 20px;
   height: 20px;
   border-radius: 50%;
   background: #2f3640;
@@ -44,7 +44,7 @@ p {
   float: left;
   padding: 0;
   color: white;
-  font-size: 16px:
-  transition: 0.4s
-  line-height: 40px;
+  font-size: 16px;
+  transition: 0.4s;
+  line-height: 22px;
 }

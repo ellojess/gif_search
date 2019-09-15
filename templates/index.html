@@ -17,8 +17,9 @@
 <!-- <button type="submit">Submit</button> -->
 <a class= "search-btn" href="#">
     <i class="fas fa-search"></i>
-    <!--search button icon from https://fontawesome.com/>
+    <!--search button icon from https://fontawesome.com/ -->
 </a>
+
 </form>
 </div>
 
@@ -28,10 +29,10 @@
 <!-- TODO: Make a for loop to loop over GIFs passed in from the server -->
 
 <!-- TODO: For each gif, include the 'gif.html' template to display it -->
+
 <!--This loops through gifs and it runs the .gif html code to display the gif    -->
 {% for gif in gifs %}
     {% include  'gif.html' %}
 {% endfor %}
-
 
 {% endblock %}
