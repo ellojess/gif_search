@@ -33,9 +33,12 @@
 
 <!--This loops through gifs and it runs the .gif html code to display the gif    -->
 <div class="grid"> 
-    {% for gif in gifs %}
-        {% include  'gif.html' %}
-    {% endfor %}
+        {% for gif in gifs %}
+            {% include  'gif.html' %}
+        {% endfor %}
 </div>
+{% if gifs|length == 0 %}
+    <h1>No GIFs could be found, and to try another search query!</h1>
+{% endif %}
 {% endblock %}
 
