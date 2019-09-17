@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request
 import requests
 import json
-
+#defines the app variable
 app = Flask(__name__)
-
+#this function asks for the query then searches the tenor api for most popular gifs that fit the key 
 @app.route('/')
 def index():
+    #some variables that need to be declared, this includes the api key that allows us to call the tenor api, the limit of gifs and the search query
     apikey = "CIKSZWLE8R9M"
     lmt = 9
     query = request.args.get('query')
@@ -15,18 +16,38 @@ def index():
         "key": apikey, 
         "limit": lmt
         }
-    #This requests the tenor api and inputs the parameters so we can get out what we searched for.
+    #this requests the tenor api and inputs the parameters so we can get out what we searched for.
     r = requests.get("https://api.tenor.com/v1/search", params)
-    
+    #this loads the gifs data
     if r.status_code == 200:
         gifs = json.loads(r.content)['results']
     else:
         gifs = None
-
+    #returns this function to index.html and the variable gifs=gifs
     return render_template('index.html', gifs = gifs)
-
+#this function displays the trending gifs on tenor
 @app.route('/trending')
 def trending():
+    #just re-defining the variables for this function, because I dont want them global
+    apikey = "CIKSZWLE8R9M"
+    lmt = 9
+    #paramaters required for the tenor api
+    params = {
+        "key": apikey, 
+        "limit": lmt
+        }
+    #get the top 9 trending GIFs
+    r = requests.get("https://api.tenor.com/v1/trending", params)
+    #loads the gifs
+    if r.status_code == 200:
+        gifs = json.loads(r.content)['results']
+    else:
+        gifs = None
+    #once again, returns this function to index.html and gifs
+    return render_template('index.html', gifs = gifs)
+
+@app.route('/random')
+def random():
     apikey = "CIKSZWLE8R9M"
     lmt = 9
 
@@ -36,7 +57,7 @@ def trending():
         }
 
     # get the top 10 trending GIFs - using the default locale of en_US
-    r = requests.get("https://api.tenor.com/v1/trending", params)
+    r = requests.get("https://api.tenor.com</v1/random", params)
 
     if r.status_code == 200:
         gifs = json.loads(r.content)['results']
@@ -44,35 +65,7 @@ def trending():
         gifs = None
 
     return render_template('index.html', gifs = gifs)
-    
-    
-    
 
-
+#declares entry point
 if __name__ == '__main__':
     app.run(debug=True)
-
-# TODO: Make an API call to Tenor using the 'requests' library
-    ##response = requests.get(
-    ##'https://api.tenor.com/v1/search',
-    ##params=params)
-
-    # TODO: Get the first 10 results from the search results
-    # https://tenor.com/gifapi/documentation#endpoints-search
-    ##r = requests.get(
-    ##"https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s" % (search_term, apikey, lmt))
-
-    ##if r.status_code == 200:
-        # load the GIFs using the urls for the smaller GIF sizes
-        ##top_10gifs = json.loads(r.content) #was 8
-        ##print(top_10gifs)
-        # move on
-    ##else:
-        ##top_10gifs = None #was 8
-        # handle error
-    # continue a similar pattern until the user makes a selection or starts a new search.
-
-    # TODO: Render the 'index.html' template, passing the gifs as a named parameter
-    ##return render_template("index.html")
-
-    

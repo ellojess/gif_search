@@ -1,48 +1,42 @@
 
-<!-- TODO: Extend 'base.html' and put content into a block 'body' to match -->
 {% extends 'base.html' %}
 {% block body %}
+
 <link rel="stylesheet" href=../static/style/styles.css>
 
 {% block title %}
-<h1>GIF Search</h1>
+
+	<h1>GIF Search</h1>
 {% endblock %}
 
-<!--  <p>Search for a GIFs!</p> -->
 
-<!-- This is the search bar, and the submit button-->
-<div class = "search-box">
-<form action = '/'>
-<input class="search-txt" name="query" type="query" placeholder="Type to Search for GIFs"/>
-<a class= "search-btn" href="#">
-    <button input class="search-btn" type="submit">
-    <i class="fas fa-search"></i>
-    </button>
-    <!--search button icon from https://fontawesome.com/ -->
-</a>
-
-</form>
-</div>
-
-<form action = '/trending'>
-<button type="submit">Trending GIFS</button>
-</form>
-
-
-<!-- TODO: Make an HTML form containing a search box and a submit button to add
-    the search term to the query string -->
-
-<!-- TODO: Make a for loop to loop over GIFs passed in from the server -->
-
-<!-- TODO: For each gif, include the 'gif.html' template to display it -->
-
-<!--This loops through gifs and it runs the .gif html code to display the gif    -->
-<div class="grid">
+	<!-- This is the search bar, and the submit button-->
+	<div class = "search-box">
+		<form action = '/'>
+			<input class="search-txt" name="query" type="query" placeholder="Type to Search for GIFs"/>
+			<a class= "search-btn" href="#">
+				<button input class="search-btn" type="submit">
+					<i class="fas fa-search"></i>
+				</button>
+				<!--search button icon from https://fontawesome.com/ -->
+			</a>
+		</form>
+	</div>
+	<form action = '/trending'>
+		<button type="submit">Trending GIFS</button>
+	</form>
+	<!--<form action = '/random'>
+		<button type="submit">Random GIFS</button>
+    </form>
+    -->
+	<!--This loops through gifs and it runs the .gif html code to display the gif    -->
+	<div class="grid">
     {% for gif in gifs %}
         {% include  'gif.html' %}
     {% endfor %}
 </div>
 {% if gifs|length == 0 %}
-    <h1>No GIFs could be found, and to try another search query!</h1>
+    
+	<h1>No GIFs could be found, and to try another search query!</h1>
 {% endif %}
 {% endblock %}
