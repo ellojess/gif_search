@@ -1,23 +1,9 @@
-# How to Use This Code
+# Gif Search
 
-Install Flask:
+Tenor gif search web application built using flask as a collaboration project with @Beck-Haywood
 
-```bash
-pip3 install flask
-```
-
-Set up Flask to run in development environment:
-
-```bash
-export FLASK_ENV=development
-```
-
-Run the server:
-
-```bash
-flask run
-```
-
-You may get some errors at first, because the starter code is not complete. Don't worry; the errors are pointing you towards what needs to be done to run the project!
-
-We have added TODOs throughout the code to further help you to complete the project. Good luck!
+### To get up and running:
+- If you don't have pipenv, install it with brew install pipenv
+- Clone this repository, cd into it, and then run pipenv shell to active the virtual env.
+- Run pipenv install to install all the packages that the program requires to run.
+- Run the command flask run or python3 app.py to get the server up and running!
