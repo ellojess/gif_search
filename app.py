@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     apikey = "CIKSZWLE8R9M"
-    lmt = 10
+    lmt = 9
     query = request.args.get('query')
     #parameters in a dictionary so we can call it in requests
     params = {
@@ -19,29 +19,38 @@ def index():
     r = requests.get("https://api.tenor.com/v1/search", params)
     
     if r.status_code == 200:
-        gifs = json.loads(r.content)["results"]
+        gifs = json.loads(r.content)['results']
     else:
         gifs = None
 
     return render_template('index.html', gifs = gifs)
 
+@app.route('/trending')
+def trending():
+    apikey = "CIKSZWLE8R9M"
+    lmt = 9
+
+    params = {
+        "key": apikey, 
+        "limit": lmt
+        }
+
+    # get the top 10 trending GIFs - using the default locale of en_US
+    r = requests.get("https://api.tenor.com/v1/trending", params)
+
+    if r.status_code == 200:
+        gifs = json.loads(r.content)['results']
+    else:
+        gifs = None
+
+    return render_template('index.html', gifs = gifs)
+    
+    
+    
+
+
 if __name__ == '__main__':
     app.run(debug=True)
-
-    # parameters
-    ##apikey = "CIKSZWLE8R9M" # test value
-    ##lmt = 10
-    # TODO: Extract query term from url
-    ##query = request.args.get('query')
-    #out test search
-    ##search_term = "excited"
-
-# TODO: Make 'params' dict with query term and API key
-    ##params = {
-    ##    "query": query,
-    ##    "api_consumer_key": apikey, ###
-    ##    "link":'https://api.tenor.com/v1/'
-    ##    }
 
 # TODO: Make an API call to Tenor using the 'requests' library
     ##response = requests.get(
@@ -65,3 +74,5 @@ if __name__ == '__main__':
 
     # TODO: Render the 'index.html' template, passing the gifs as a named parameter
     ##return render_template("index.html")
+
+    
