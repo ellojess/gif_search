@@ -1,6 +1,12 @@
 from flask import Flask, render_template, request
 import requests
 import json
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+TENOR_API_KEY = os.getenv("CIKSZWLE8R9M")
+
 #defines the app variable
 app = Flask(__name__)
 #this function asks for the query then searches the tenor api for most popular gifs that fit the key 
